@@ -1,0 +1,67 @@
+﻿@model NoteModel
+
+@{
+    @if (Model != null && Model.Id != Guid.Empty)
+    {
+        ViewData["Title"] = "Edit Note";
+    }
+    else
+    {
+        ViewData["Title"] = "Create New Note";
+    }
+
+}
+
+<div class="note-editor">
+  <div class="panel panel-default note-editor___panel">
+     <div class="panel-heading note-editor___header">
+         <h1 class="panel-title note-editor___pane-title">
+             @if (Model != null && Model.Id != Guid.Empty)
+             {
+                 <span>Edit Your Note</span>
+             }
+             else
+             {
+                <span>Create New Note</span>
+             }
+
+  </h1>
+ </div>
+      <form asp-action="NoteEditor" method="post">
+         <div class="pane-body note-editor___panel-body">
+             <div asp-validation-summary="All"></div>
+             <div class="form-group">
+              <label class="note-editor___input-label" asp-for="Subject">Subject</label>
+              <input class="form-control note-editor___subject-input" asp-for="Subject"/>
+              </div>
+
+         <div class="form-group">
+             <label class="note-editor___input-label" asp-for="Detail" >Your Note</label>
+  <textarea class="form-control note-editor___detail-input" asp-for="Detail" id-"TextArea" 
+     rows="12" cols="20"></textarea>
+
+   </div>
+  </div>
+
+   <div class="panel-footer">
+       <div class="note-editor___flex-container">
+          @if (Model != null && Model.Id != Guid.Empty)
+          {
+            <a class="btn btn-sm note-editor___button" asp-action="NoteDetail" 
+               asp-route="Model.Id">Cancel</a>
+          }
+          else
+          {
+              <a class="btn btn-sm note-editor___button" asp-action="Index">Cancel</a>
+          }
+
+           <button class="btn btn-sm note-editor___button"type="submit" >Save Note</button>
+
+
+     </div>
+   </div>
+ </form>
+</div>
+</div>
+
+
